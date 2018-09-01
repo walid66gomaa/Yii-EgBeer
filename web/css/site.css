@@ -118,4 +118,5 @@ a.desc:after {
     background-color: rgb(216, 211, 211);
     box-shadow: 5px 10px #f1eaea;
     margin: 10px;
+    height: 150px;
 }

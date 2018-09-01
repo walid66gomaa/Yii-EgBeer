@@ -9,13 +9,16 @@ class EntryForm extends Model
 {
     public $search;
     public $select;
-
+// '/^[a-zA-Z0-9_-\s]+$/'
     public function rules()
     {
         return [
-            [['search', 'select'], 'required','message' =>'must enter search  word'],
+            [['search'], 'required','message' =>'must enter search  word'],
+            [['select'], 'required','message' =>'must select one checkbox'],
             
-            ['search', 'match', 'pattern' => '/^[a-zA-Z0-9_-]+$/', 'message' => 'Your username can only contain alphanumeric characters, underscores and dashes.'],
+            ['search', 'match', 'pattern' => '/^[a-zA-Z0-9_]+(?:\s[a-zA-Z0-9_]+)*$/', 
+            'message' => 'Your Search can only contain alphanumeric characters, underscores numbers and dashes. ',
+            ],
         ];
     }
 }
