@@ -11,7 +11,6 @@ use yii\widgets\ActiveForm;
 
 <?= $form->field($model, 'search')->textInput(['placeholder' => 'Search'])->label('Search') ;
    
-    // $model->select = 'beer'; 
     echo $form->field($model, 'select')->radioList( ['beer'=>'beers', 'brewery' => 'breweries'] )
     ->label(false,['class'=>'label-class']);
    ?>

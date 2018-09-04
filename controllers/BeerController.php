@@ -67,7 +67,6 @@ class BeerController extends Controller
      */
 	public function actionIndex()
 	{   
-		// return $this->render('entry');
 		$beer_api=new BeerApi();
 		$model = new EntryForm();
 		$resultRand=$this->randomBeer(); 
@@ -111,15 +110,24 @@ class BeerController extends Controller
 	}
 
 
-	public function actionBrewery($id)
+	public function actionBrewery($id,$beerId)
 	{   
 		$model = new EntryForm();
 		$beer_api=new BeerApi();
+
+		$dataRand=array( 
+			'withBreweries'=>'Y',
+			'key'=> '985aeddea212aa71cac6e71dc675ea57');
+
+		$endPointBeer='beer/'.$beerId; //return one beer by id
+
+		$resultRand= $beer_api->findBear($dataRand,$endPointBeer);
+		$resultRand=@json_decode($resultRand, true);
+
+		$model->search=$resultRand['data']['breweries'][0]['name'];
+		$model->select='brewery';
 		
-		$resultRand=$this->randomBeer();
-
-		$model = new EntryForm();
-
+	
 		$data = array( 'key'=> '985aeddea212aa71cac6e71dc675ea57');
 
 		$endPoint='brewery/'.$id.'/beers';
